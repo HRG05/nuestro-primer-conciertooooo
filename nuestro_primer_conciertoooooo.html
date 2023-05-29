@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" href="icono.png">
+  <title>Nuestro primer conciertooooo</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #FFFBF7;
+    }
+
+    .clock-container {
+      font-size: 48px;
+      font-family: "Helvetica", sans-serif;
+      text-align: center;
+      color: black;
+    }
+
+    #text {
+      font-size: 24px;
+      font-family: "Helvetica", sans-serif;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    /* Definir la animación */
+    @keyframes balloon {
+      0% {
+        transform: translateY(100%);
+      }
+      50% {
+        transform: translateY(0%);
+      }
+      100% {
+        transform: translateY(-748%);
+      }
+    }
+
+    .balloon-container {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: 0;
+      transform: translateX(-50%);
+      animation: balloon 3s linear forwards;
+      visibility: hidden;
+    }
+
+    /* Estilos para dispositivos móviles */
+    @media (max-width: 768px) {
+      .clock-container {
+        font-size: 36px;
+      }
+
+      #text {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="countdown" class="clock-container"></div>
+  <p id="text"></p>
+  <div class="balloon-container"></div>
+
+  <script>
+    function createBalloon() {
+      var balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+      
+      var balloonImages = [
+        'imagenes/globo_uno.png',
+        'imagenes/globo_dos.png',
+        'imagenes/globo_tres.png',
+        'imagenes/globo_cuatro.png',
+        'imagenes/globo_cinco.png',
+        'imagenes/globo_seis.png',
+        'imagenes/globo_siete.png',
+        'imagenes/globo_ocho.png',
+        'imagenes/globo_nueve.png',
+        'imagenes/globo_diez.png',
+        'imagenes/globo_once.png',
+        'imagenes/globo_doce.png',
+        'imagenes/globo_trece.png',
+        'imagenes/globo_catorce.png',
+        'imagenes/globo_quince.png',
+        // Agrega más nombres de archivo de imágenes según sea necesario
+      ];
+
+      var randomImageIndex = Math.floor(Math.random() * balloonImages.length);
+      var balloonImage = balloonImages[randomImageIndex];
+
+      balloon.innerHTML = '<img srcset="' + balloonImage + ' 1x, ' + balloonImage + '@2x 2x" alt="Globo">';
+      document.querySelector('.balloon-container').appendChild(balloon);
+
+      var randomX = Math.random() * (window.innerWidth - 100) + 50; // Posición horizontal aleatoria
+      balloon.style.left = randomX + 'px';
+
+      var randomDelay = Math.random() * 3000; // Retraso aleatorio en ms
+      balloon.style.animationDelay = randomDelay + 'ms';
+
+      setTimeout(function() {
+        balloon.style.visibility = 'visible';
+      }, randomDelay);
+    }
+
+    const countdownDate = new Date("2023-05-27T09:59:59").getTime();
+
+    const countdown = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "¡Tiempo terminado!";
+        document.getElementById("text").innerHTML = "♥El evento ha comenzado♥";
+        createBalloons();
+      } else {
+        document.getElementById("text").innerHTML = "Esperando el evento...";
+      }
+    }, 1000);
+
+    function createBalloons() {
+      var numBalloons = 25;
+      for (var i = 0; i < numBalloons; i++) {
+        createBalloon();
+      }
+    }
+  </script>
+</body>
+</html>
