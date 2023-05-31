@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <link rel="icon" href="icono.png">
   <title>Nuestro primer conciertooooo</title>
   <style>
@@ -10,25 +11,22 @@
       align-items: center;
       flex-direction: column;
       height: 100vh;
-      font-family: Arial, sans-serif;
       background-color: #FFFBF7;
+      font-family: "Arial", sans-serif;
     }
 
     .clock-container {
       font-size: 48px;
-      font-family: "Helvetica", sans-serif;
       text-align: center;
       color: black;
     }
 
     #text {
       font-size: 24px;
-      font-family: "Helvetica", sans-serif;
       margin-top: 20px;
       text-align: center;
     }
 
-    /* Definir la animación */
     @keyframes balloon {
       0% {
         transform: translateY(100%);
@@ -57,7 +55,6 @@
       visibility: hidden;
     }
 
-    /* Estilos para dispositivos móviles */
     @media (max-width: 768px) {
       .clock-container {
         font-size: 36px;
@@ -80,28 +77,17 @@
       balloon.classList.add('balloon');
       
       var balloonImages = [
-        'imagenes/globo_uno.png',
-        'imagenes/globo_dos.png',
-        'imagenes/globo_tres.png',
-        'imagenes/globo_cuatro.png',
-        'imagenes/globo_cinco.png',
-        'imagenes/globo_seis.png',
-        'imagenes/globo_siete.png',
-        'imagenes/globo_ocho.png',
-        'imagenes/globo_nueve.png',
-        'imagenes/globo_diez.png',
-        'imagenes/globo_once.png',
-        'imagenes/globo_doce.png',
-        'imagenes/globo_trece.png',
-        'imagenes/globo_catorce.png',
-        'imagenes/globo_quince.png',
-        // Agrega más nombres de archivo de imágenes según sea necesario
+        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzADMzADMzMzADMzADMzMzMzMw8PBzgNV0sAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAEZ0FNQQAAsY8L/GEFAAAABlBMVEUA///MzMzRcbpIAAAAAWJLR0QUpf1sAAAAhSURBVAjXY2BgYGBo5AAGBAQAkEEBBmBgAT8AAI0mE4AVuzQAAAAASUVORK5CYII=',
+        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzADMzADMzMzADMzADMzMzMzMw8PBzgNV0sAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAEZ0FNQQAAsY8L/GEFAAAABlBMVEUA///MzMzRcbpIAAAAAWJLR0QUpf1sAAAAhSURBVAjXY2BgYGBo5AAGBAQAkEEBBmBgAT8AAI0mE4AVuzQAAAAASUVORK5CYII=',
+        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzADMzADMzMzADMzADMzMzMzMw8PBzgNV0sAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAEZ0FNQQAAsY8L/GEFAAAABlBMVEUA///MzMzRcbpIAAAAAWJLR0QUpf1sAAAAhSURBVAjXY2BgYGBo5AAGBAQAkEEBBmBgAT8AAI0mE4AVuzQAAAAASUVORK5CYII=',
+        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzADMzADMzMzADMzADMzMzMzMw8PBzgNV0sAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAEZ0FNQQAAsY8L/GEFAAAABlBMVEUA///MzMzRcbpIAAAAAWJLR0QUpf1sAAAAhSURBVAjXY2BgYGBo5AAGBAQAkEEBBmBgAT8AAI0mE4AVuzQAAAAASUVORK5CYII=',
+        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzADMzADMzMzADMzADMzMzMzMw8PBzgNV0sAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAEZ0FNQQAAsY8L/GEFAAAABlBMVEUA///MzMzRcbpIAAAAAWJLR0QUpf1sAAAAhSURBVAjXY2BgYGBo5AAGBAQAkEEBBmBgAT8AAI0mE4AVuzQAAAAASUVORK5CYII='
       ];
 
       var randomImageIndex = Math.floor(Math.random() * balloonImages.length);
       var balloonImage = balloonImages[randomImageIndex];
 
-      balloon.innerHTML = '<img srcset="' + balloonImage + ' 1x, ' + balloonImage + '@2x 2x" alt="Globo">';
+      balloon.innerHTML = '<img src="' + balloonImage + '" alt="Globo">';
       document.querySelector('.balloon-container').appendChild(balloon);
 
       var randomX = Math.random() * (window.innerWidth - 100) + 50; // Posición horizontal aleatoria
@@ -130,8 +116,8 @@
 
       if (distance < 0) {
         clearInterval(countdown);
-        document.getElementById("countdown").innerHTML = "¡Tiempo terminado!";
-        document.getElementById("text").innerHTML = "♥El evento ha comenzado♥";
+        document.getElementById("countdown").innerHTML = "!Tiempo terminado!";
+        document.getElementById("text").innerHTML = "El evento ha comenzado:)";
         createBalloons();
       } else {
         document.getElementById("text").innerHTML = "Esperando el evento...";
@@ -139,7 +125,7 @@
     }, 1000);
 
     function createBalloons() {
-      var numBalloons = 25;
+      var numBalloons = 23;
       for (var i = 0; i < numBalloons; i++) {
         createBalloon();
       }
